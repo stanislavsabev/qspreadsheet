@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=49.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+addopts = "--cov=qspreadsheet"
+testpaths = [
+    "tests",
+]
+
+[tool.pylint]
+    [tool.pylint.master]
+    ignore = "qt.py"
+
+    [tool.pylint.format]
+    max-line-length = "119"
+
+[tool.mypy]
+mypy_path = "src"
+check_untyped_defs = true
+
+
+[[tool.mypy.overrides]]
+module = [
+    "pandas",
+    "numpy",
+    "six",
+]
+ignore_missing_imports = true
