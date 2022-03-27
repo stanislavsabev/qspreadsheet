@@ -1,17 +1,16 @@
+"""Example for how to use the `qspreadsheet` package."""
+
 import sys
-from typing import cast
 
-import pandas as pd
-
-import qspreadsheet as qs
 from qspreadsheet import qt
-from qspreadsheet.types import DF
 
 
 class MainWindow(qt.QMainWindow):
+    """Main GUI Window."""
 
-    def __init__(self):
-        super(MainWindow, self).__init__()
+    def __init__(self, parent: qt.QWidget=None):
+        """Init MainWindow object."""
+        super().__init__(parent)
 
         central_widget = qt.QWidget(self)
         central_layout = qt.QVBoxLayout(central_widget)
@@ -29,11 +28,13 @@ class MainWindow(qt.QMainWindow):
 
 
 def create_table_view() -> qt.QWidget:
+    """Create table view."""
     table_view = qt.QWidget()
     return table_view
 
 
 def main():
+    """Entry point for this script."""
     app = qt.QApplication(sys.argv)
     window = MainWindow()
     window.show()
