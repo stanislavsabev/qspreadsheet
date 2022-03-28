@@ -53,9 +53,8 @@ class MainWindow(qt.QMainWindow):
 
     def load_settings(self, settings: qt.QSettings):
         """Load window settings like size and position."""
-        self.resize(
-            qt.QSize(settings.value('size', self._default_size)))
-        self.move(qt.QPoint(settings.value('pos', qt.QPoint(200, 200))))
+        self.resize(qt.QSize(settings.value('size', self._default_size))) # type: ignore
+        self.move(qt.QPoint(settings.value('pos', qt.QPoint(200, 200)))) # type: ignore
 
 def create_table_view() -> qt.QWidget:
     """Create table view."""
