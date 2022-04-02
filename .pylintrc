@@ -1,0 +1,5 @@
+[MASTER]
+ignore=qt.py
+
+[FORMAT]
+max-line-length = 99

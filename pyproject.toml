@@ -13,7 +13,7 @@ testpaths = [
     ignore = "qt.py"
 
     [tool.pylint.format]
-    max-line-length = "119"
+    max-line-length = "99"
 
 [tool.mypy]
 mypy_path = "src"
