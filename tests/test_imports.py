@@ -14,7 +14,7 @@ def test_package_import():
         assert result
 
 @pytest.mark.parametrize('module_name', [
-    'constants', 'types', 'qt',
+    'constants', 'types', 'qt', 'table_widget', 'table_view',
     pytest.param('dummy', marks=pytest.mark.xfail)])
 def test_module_imports(module_name):
     """Test modules import."""
