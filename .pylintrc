@@ -3,3 +3,6 @@ ignore=qt.py
 
 [FORMAT]
 max-line-length = 99
+
+[TYPECHECK]
+ignored-classes=pytest
