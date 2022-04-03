@@ -9,5 +9,5 @@ from qspreadsheet import qt
 def qapp():
     """Yields instance of QApplication."""
     app = qt.QApplication([])
-    yield app
+    yield app.instance()
     del app
