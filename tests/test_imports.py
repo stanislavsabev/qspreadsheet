@@ -3,6 +3,7 @@
 import importlib
 import pytest
 
+
 def test_package_import():
     """Test package import."""
     result = True
@@ -12,6 +13,7 @@ def test_package_import():
         result = False
     finally:
         assert result
+
 
 @pytest.mark.parametrize('module_name', [
     'constants', 'types', 'qt', 'table_widget', 'table_view',
