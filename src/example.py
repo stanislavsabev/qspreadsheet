@@ -4,12 +4,13 @@ import sys
 from typing import Callable
 
 from qspreadsheet import qt
+from qspreadsheet import table_widget as tw
 
 
 class MainWindow(qt.QMainWindow):
     """Main GUI Window."""
 
-    def __init__(self, parent: qt.QWidget=None):
+    def __init__(self, parent: qt.QWidget = None):
         """Init MainWindow object."""
         super().__init__(parent)
 
@@ -20,18 +21,18 @@ class MainWindow(qt.QMainWindow):
         central_widget = qt.QWidget(self)
         central_layout = qt.QVBoxLayout(central_widget)
         central_widget.setLayout(central_layout)
-        table_view = create_table_view()
+        table_widget = tw.TableWidget()
 
         table_layout = qt.QHBoxLayout()
-        table_layout.addWidget(table_view)
-        table_view.setParent(table_layout)
+        table_layout.addWidget(table_widget)
+        table_widget.setParent(table_layout)
         central_layout.addLayout(table_layout)
 
         self.setCentralWidget(central_widget)
         self.setWindowTitle('qspreadsheet')
         self.apply_settings(self.load_settings)
 
-    def closeEvent(self, event: qt.QCloseEvent): # pylint: disable=invalid-name
+    def closeEvent(self, event: qt.QCloseEvent):
         """Pyside2-closeEvent."""
         self.apply_settings(self.save_settings)
         event.accept()
@@ -53,13 +54,8 @@ class MainWindow(qt.QMainWindow):
 
     def load_settings(self, settings: qt.QSettings):
         """Load window settings like size and position."""
-        self.resize(qt.QSize(settings.value('size', self._default_size))) # type: ignore
-        self.move(qt.QPoint(settings.value('pos', qt.QPoint(200, 200)))) # type: ignore
-
-def create_table_view() -> qt.QWidget:
-    """Create table view."""
-    table_view = qt.QWidget()
-    return table_view
+        self.resize(qt.QSize(settings.value('size', self._default_size)))  # type: ignore
+        self.move(qt.QPoint(settings.value('pos', qt.QPoint(200, 200))))  # type: ignore
 
 
 def main():
