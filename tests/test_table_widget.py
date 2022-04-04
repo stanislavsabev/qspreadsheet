@@ -15,17 +15,20 @@ def widget_mock(qapp):
     return table_widget_mock
 
 
+@pytest.mark.serial
 @pytest.fixture(scope='function')
 def table_widget(qapp):
     """TableWidget fixture."""
     return tw.TableWidget()
 
 
+@pytest.mark.serial
 def test_create(qapp):
     """TableView can be created."""
     util.test_create(tw.TableWidget)
 
 
+@pytest.mark.serial
 @pytest.mark.parametrize('obj_name, obj_type', [
     ('table_view', qt.QTableView),
     ('table_model', qt.QAbstractItemModel),
@@ -42,6 +45,7 @@ def test_has_attr(table_widget, obj_name, obj_type):
     assert obj.objectName() == obj_name
 
 
+@pytest.mark.serial
 def test_setup_ui(table_widget):
     """Test TableWidget.setup_ui()."""
     table_widget.setup_ui()
