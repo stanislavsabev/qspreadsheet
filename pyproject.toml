@@ -7,7 +7,6 @@ addopts = "--cov=qspreadsheet"
 testpaths = [
     "tests",
 ]
-markers = ["serial"]
 
 [tool.mypy]
 mypy_path = "src"
