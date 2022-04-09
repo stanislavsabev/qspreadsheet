@@ -1,9 +1,10 @@
 """Test for the TableView object."""
 
-from qspreadsheet import table_view
+from qspreadsheet import table_view as tv
 from tests import util
 
 
-def test_create(qapp):
+def test_create(qtbot):
     """TableView can be created."""
-    util.test_create(table_view.TableView)
+    table_view = util.test_create(tv.TableView, qtbot=qtbot)
+    qtbot.addWidget(table_view)

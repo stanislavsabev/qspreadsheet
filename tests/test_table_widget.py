@@ -1,29 +1,15 @@
 """Test for the TableWidget object."""
 
 import pytest
-import mock
 
 from qspreadsheet import table_widget as tw
 from qspreadsheet import qt
 from tests import util
 
 
-@pytest.fixture(scope='function')
-def widget_mock(qapp):
-    """Mock fixture for TableWidget."""
-    table_widget_mock = mock.MagicMock()
-    return table_widget_mock
-
-
-@pytest.fixture(scope='function')
-def table_widget(qapp):
-    """TableWidget fixture."""
-    return tw.TableWidget()
-
-
-def test_create(qapp):
+def test_create(qtbot):
     """TableView can be created."""
-    util.test_create(tw.TableWidget)
+    util.test_create(tw.TableWidget, qtbot=qtbot)
 
 
 @pytest.mark.parametrize('obj_name, obj_type', [
@@ -32,8 +18,11 @@ def test_create(qapp):
     ('filter_model', qt.QSortFilterProxyModel),
     ('header_view', qt.QHeaderView),
 ])
-def test_has_attr(table_widget, obj_name, obj_type):
+def test_has_attr(qtbot, obj_name, obj_type):
     """Has table view attribute."""
+    table_widget = tw.TableWidget()
+    qtbot.addWidget(table_widget)
+
     attr_name = f'_{obj_name}'
     assert hasattr(table_widget, attr_name)
     obj: qt.QObject = getattr(table_widget, attr_name)
@@ -42,8 +31,11 @@ def test_has_attr(table_widget, obj_name, obj_type):
     assert obj.objectName() == obj_name
 
 
-def test_setup_ui(table_widget):
+def test_setup_ui(qtbot):
     """Test TableWidget.setup_ui()."""
+    table_widget = tw.TableWidget()
+    qtbot.addWidget(table_widget)
+
     table_widget.setup_ui()
     assert table_widget.layout().objectName() == 'central_layout'
     table_view_layout = table_widget.findChild(qt.QLayout, 'table_view_layout')
