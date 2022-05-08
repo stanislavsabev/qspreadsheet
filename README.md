@@ -72,7 +72,9 @@ Name                               Stmts   Miss  Cover
 src\qspreadsheet\__init__.py           0      0   100%
 src\qspreadsheet\constants.py          3      0   100%
 src\qspreadsheet\qt.py                 7      0   100%
+src\qspreadsheet\table_view.py        16     10    38%
 src\qspreadsheet\table_widget.py      24      0   100%
+src\qspreadsheet\types.py              9      0   100%
 ------------------------------------------------------
 TOTAL                                 59     10    83%
 
