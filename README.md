@@ -63,7 +63,7 @@ Run `pytest`, `flake8` and `mypy` in a command line...
 ```text
 $ pytest
 ...
-tests\test_start.py .
+tests\test_imports.py ......x
 [100%]
 
 ----------- coverage: platform win32, python 3.7.9-final-0 -----
