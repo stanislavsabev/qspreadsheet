@@ -20,6 +20,10 @@ pip install .
 ---
 ---
 
+## Usage
+
+See `src/example.py`.
+
 ## Development Setup
 
 Clone this repo.
