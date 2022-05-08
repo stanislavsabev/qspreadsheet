@@ -62,16 +62,19 @@ $ pytest
 tests\test_start.py .
 [100%]
 
------------ coverage: platform win32, python 3.9.2-final-0 -----------
-Name                             Stmts   Miss  Cover
-----------------------------------------------------
-src\qspreadsheet\__init__.py       0      0   100%
-src\qspreadsheet\start.py          2      0   100%
-----------------------------------------------------
-TOTAL                                2      0   100%
+----------- coverage: platform win32, python 3.7.9-final-0 -----
+Name                               Stmts   Miss  Cover
+------------------------------------------------------
+src\qspreadsheet\__init__.py           0      0   100%
+src\qspreadsheet\constants.py          3      0   100%
+src\qspreadsheet\qt.py                 7      0   100%
+src\qspreadsheet\table_widget.py      24      0   100%
+------------------------------------------------------
+TOTAL                                 59     10    83%
 
 
-========================================================================= 1 passed in 0.11s ===
+======= 13 passed, 1 xfailed, 1 warning in 1.10s ===============
+
 ```
 
 ```text
