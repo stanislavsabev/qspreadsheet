@@ -12,7 +12,6 @@ testpaths = [
 mypy_path = "src"
 check_untyped_defs = true
 
-
 [[tool.mypy.overrides]]
 module = [
     "pandas",
@@ -21,3 +20,7 @@ module = [
     "PySide2",
 ]
 ignore_missing_imports = true
+
+[tool.black]
+line-length = 99
+target-version = ['py37', 'py38', 'py39']
