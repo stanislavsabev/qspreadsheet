@@ -1,14 +1,13 @@
-"""Table widget."""
+"""A TableWidget to implement and manage table and index views and models."""
 
 from qspreadsheet import qt
 from qspreadsheet import table_view
+from qspreadsheet import table_model
 
 
 class TableWidget(qt.QWidget):
-    """Table widget.
-
-    Manage:
-        table_view, table_model, filter_model, header_view and header_model.
+    """A TableWidget to implement and manage table and index views and models.
+    Based on QWidget.
     Handle setting column delegates.
     """
 
@@ -20,14 +19,14 @@ class TableWidget(qt.QWidget):
         """
         super().__init__(parent)
         self._table_view = table_view.TableView(self)
-        self._table_model = qt.QStandardItemModel(parent=self)
+        self._table_model = table_model.TableModel(parent=self)
         self._filter_model = qt.QSortFilterProxyModel(self)
         self._header_view = qt.QHeaderView(qt.Qt.Horizontal, self)
-        self.name_objects()
+        self.name_managed()
         self.setup_ui()
 
-    def name_objects(self):
-        """Name Qt objects."""
+    def name_managed(self):
+        """Name managed Qt objects."""
         for name in [
                 'table_view', 'table_model', 'filter_model', 'header_view']:
             attr: qt.QObject = getattr(self, f'_{name}')
