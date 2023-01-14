@@ -1,7 +1,5 @@
 # user
-.ignore/
 .vscode/
-.env
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -51,6 +49,7 @@ coverage.xml
 *.cover
 .hypothesis/
 .pytest_cache/
+py.typed
 
 # Translations
 *.mo
