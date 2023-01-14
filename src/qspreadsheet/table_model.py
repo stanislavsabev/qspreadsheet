@@ -1,6 +1,7 @@
 """Table model based on QAbstractTableModel."""
 
-from qspreadsheet import types as t
+import typing as t 
+
 from qspreadsheet import logging
 from qspreadsheet import qt
 from qspreadsheet import resources_rc
@@ -18,7 +19,7 @@ class TableModel(qt.QAbstractTableModel):
     mutable_rows_enabled = qt.Signal(bool)
     virtual_rows_enabled = qt.Signal(bool)
 
-    def __init__(self, parent: t.Optional[qt.QtCore.QObject] = ...) -> None:
+    def __init__(self, parent: t.Optional[qt.QObject] = ...) -> None:
         """Create TableModel based on QAbstractTableModel.
 
         Args:

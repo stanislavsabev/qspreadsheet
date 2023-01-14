@@ -1,12 +1,14 @@
 """Table view."""
 
+from typing import Optional
+
 from qspreadsheet import qt
 
 
 class TableView(qt.QTableView):
     """Table view."""
 
-    def __init__(self, parent: qt.QWidget = None) -> None:
+    def __init__(self, parent: Optional[qt.QObject] = ...) -> None:
         """Create TableView object.
 
         Args:

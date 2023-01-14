@@ -1,5 +1,7 @@
 """A TableWidget to implement and manage table and index views and models."""
 
+from typing import Optional
+
 from qspreadsheet import qt
 from qspreadsheet import table_view
 from qspreadsheet import table_model
@@ -11,28 +13,28 @@ class TableWidget(qt.QWidget):
     Handle setting column delegates.
     """
 
-    def __init__(self, parent: qt.QWidget = None) -> None:
+    def __init__(self, parent: Optional[qt.QObject] = ...) -> None:
         """Create TableWidget object.
 
         Args:
             parent: A QWidget, optional, to be assigned as parent.
         """
-        super().__init__(parent)
+        super(TableWidget, self).__init__(parent)
         self._table_view = table_view.TableView(self)
         self._table_model = table_model.TableModel(parent=self)
         self._filter_model = qt.QSortFilterProxyModel(self)
         self._header_view = qt.QHeaderView(qt.Qt.Horizontal, self)
-        self.name_managed()
-        self.setup_ui()
+        self._name_managed()
+        self._setup_ui()
 
-    def name_managed(self):
+    def _name_managed(self):
         """Name managed Qt objects."""
-        for name in [
-                'table_view', 'table_model', 'filter_model', 'header_view']:
-            attr: qt.QObject = getattr(self, f'_{name}')
-            attr.setObjectName(name)
+        for attr_name in [a for a in dir(self) if not a.startswith('__') and a.startswith('_')]:
+            attr = getattr(self, attr_name)
+            if isinstance(attr, qt.QObject):
+                attr.setObjectName(attr.__class__.__name__)
 
-    def setup_ui(self):
+    def _setup_ui(self):
         """Setup UI layout for this widget."""
         table_view_layout = qt.QVBoxLayout()
         table_view_layout.setObjectName('table_view_layout')
