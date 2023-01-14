@@ -28,12 +28,12 @@ class TableView(qt.QTableView):
         if row_ndx < 0 or col_ndx < 0:
             return
 
-        menu = self.make_cell_context_menu(row_ndx, col_ndx)
+        menu = self.create_cell_context_menu(row_ndx, col_ndx)
         pos = self.mapToGlobal(event.pos())
         menu_pos = qt.QPoint(pos.x() + 20, pos.y() + menu.height() + 20)
         menu.exec_(menu_pos)
 
-    def make_cell_context_menu(self, row_ndx: int, col_ndx: int) -> qt.QMenu:
+    def create_cell_context_menu(self, row_ndx: int, col_ndx: int) -> qt.QMenu:
         """Create cell context menu.
 
         Args:
@@ -43,6 +43,5 @@ class TableView(qt.QTableView):
         Returns:
             A QMenu.
         """
-
         menu = qt.QMenu('context menu', self)
         return menu
