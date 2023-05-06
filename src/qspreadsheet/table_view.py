@@ -8,7 +8,7 @@ from qspreadsheet import qt
 class TableView(qt.QTableView):
     """Table view."""
 
-    def __init__(self, parent: Optional[qt.QObject] = ...) -> None:
+    def __init__(self, parent: Optional[qt.QObject] = None) -> None:
         """Create TableView object.
 
         Args:
@@ -47,3 +47,19 @@ class TableView(qt.QTableView):
         """
         menu = qt.QMenu('context menu', self)
         return menu
+
+    def sizeHint(self):
+        # Set width and height based on number of columns in model
+        # Width
+        width = 2 * self.frameWidth()  # Account for border & padding
+        # width += self.verticalScrollBar().width()  # Dark theme has scrollbars always shown
+        for i in range(self.model().columnCount(qt.QModelIndex())):
+            width += self.columnWidth(i)
+
+        # Height
+        height = 2 * self.frameWidth()  # Account for border & padding
+        # height += self.horizontalScrollBar().height()  # Dark theme has scrollbars always shown
+        for i in range(self.model().rowCount(qt.QModelIndex())):
+            height += self.rowHeight(i)
+
+        return qt.QSize(width, height)
