@@ -22,7 +22,7 @@ class IndexModel(qt.QAbstractTableModel):
     mutable_rows_enabled = qt.Signal(bool)
     virtual_rows_enabled = qt.Signal(bool)
 
-    def __init__(self, data: pd.Index, parent: Optional[qt.QObject] = ...) -> None:
+    def __init__(self, data: pd.Index, parent: Optional[qt.QObject] = None) -> None:
         """Create IndexModel based on QAbstractTableModel.
 
         Args:
@@ -39,16 +39,18 @@ class ColumnIndexModel(IndexModel):
         parent (QObject): Optional parent for this index.
     """
 
-    def __init__(self, index: pd.Index, parent: Optional[qt.QObject] = ...) -> None:
+    def __init__(self, data: pd.Index, parent: Optional[qt.QObject] = None) -> None:
         """Create ColumnIndexModel based on QAbstractTableModel.
 
         Args:
             parent (QObject): Model's parent
         """
-        super().__init__(index, parent)
+        super().__init__(data, parent)
     
     def data(self, index: qt.QModelIndex, role: int = qt.Qt.DisplayRole) -> Any:
-        return index.column()
+        if role == qt.Qt.DisplayRole:
+            return str(self._data[index.column()])
+        return None
     
     def columnCount(self, parent: qt.QModelIndex) -> int:
         del parent # Unused
@@ -66,16 +68,18 @@ class RowIndexModel(IndexModel):
         parent (QObject): Optional parent for this index.
     """
 
-    def __init__(self, index: pd.Index, parent: Optional[qt.QObject] = ...) -> None:
+    def __init__(self, data: pd.Index, parent: Optional[qt.QObject] = None) -> None:
         """Create RowIndexModel based on QAbstractTableModel.
 
         Args:
             parent (QObject): Model's parent
         """
-        super().__init__(index, parent)
+        super().__init__(data, parent)
 
     def data(self, index: qt.QModelIndex, role: int = qt.Qt.DisplayRole) -> Any:
-        return index.row()
+        if role == qt.Qt.DisplayRole:
+            return str(self._data[index.row()])
+        return None
 
     def columnCount(self, parent: qt.QModelIndex) -> int:
         del parent # Unused
