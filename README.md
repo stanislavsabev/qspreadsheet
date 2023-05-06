@@ -6,7 +6,9 @@ Show and edit pandas DataFrame in GUI with PySide2.
 
 ---
 
-## Installation
+## Usage
+
+### Install
 
 ```text
 git clone https://github.com/stanislavsabev/qspreadsheet.git
@@ -17,32 +19,32 @@ cd qspreadsheet
 pip install .
 ```
 
----
----
+### See example
 
-## Usage
-
-See `src/example.py`.
+`python src/example.py`.
 
 ## Development Setup
 
-Clone this repo.
-
-```text
-git clone https://github.com/stanislavsabev/qspreadsheet.git
-cd qspreadsheet
-```
-
 Setup virtual environment and activate it.
 
-```text
-python -m venv venv
+### Linux / Mac
 
-source ./venv/bin/activate # Linux / Mac
-.\venv\Scripts\activate.bat # Windows
+```bash
+python -m venv .venv
+
 ```
 
-Install requirements.
+``` bash
+source ./.venv/bin/activate
+```
+
+### Windows
+
+```batch
+.\venv\Scripts\activate.bat
+```
+
+### Install requirements
 
 ```text
 python -m pip install --upgrade pip
@@ -50,7 +52,7 @@ pip install -r requirements.txt
 pip install -r requirements-dev.txt
 ```
 
-Install as editable package.
+### Install as editable package
 
 ```text
 pip install -e .
