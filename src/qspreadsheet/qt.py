@@ -16,7 +16,7 @@ from PySide2.QtCore import (QAbstractItemModel, QAbstractTableModel, QDate,
 from PySide2.QtGui import (QBrush, QCloseEvent, QColor, QContextMenuEvent,
                            QFont, QFontMetrics, QIcon, QKeySequence, QPixmap,
                            QResizeEvent, QShowEvent, QTextCharFormat,
-                           QTextDocument, QStandardItemModel)
+                           QTextDocument, QStandardItemModel, QPainter)
 from PySide2.QtWidgets import (QAction, QApplication, QBoxLayout, QCheckBox,
                                QComboBox, QDateEdit, QDateTimeEdit,
                                QDoubleSpinBox, QGridLayout, QHBoxLayout,
