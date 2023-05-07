@@ -1,15 +1,12 @@
-import os
-import PySide2
+from typing import TypeVar
 
-plugin_path = os.path.join(os.path.dirname(
-    PySide2.__file__), 'plugins', 'platforms')
-os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = plugin_path
+import pandas as _pd
 
 from . import resources_rc
-from .common import *
-from .custom_widgets import *
-from .sort_filter_proxy import *
-from .delegates import *
-from .header_view import *
-from .dataframe_model import *
-from .dataframe_view import *
+
+MAX_INT = 2147483647
+MAX_FLOAT = 3.4028234664e+38
+LEFT, ABOVE = range(2)
+
+DF = TypeVar('DF', bound=_pd.DataFrame)
+SER = TypeVar('SER', bound=_pd.Series)
