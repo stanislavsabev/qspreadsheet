@@ -215,9 +215,6 @@ class MasterDelegate(ColumnDelegate):
             return delegate.default_value(index)
         return super().default_value(index)
 
-    def null_value(self) -> Any:
-        return {ndx: delegate.null_value() for ndx, delegate in self.delegates.items()}
-
     @property
     def non_nullable_delegates(self):
         return {

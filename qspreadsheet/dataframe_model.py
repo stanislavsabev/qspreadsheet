@@ -253,9 +253,9 @@ class DataFrameModel(qt.QAbstractTableModel):
         self.col_ndx.insert(at_index, 1)
 
     def null_rows(self, start_index: int, count: int) -> DF:
-        nulls_row: Dict[int, Any] = self.delegate.null_value()
         data = {
-            self._df.columns[ndx]: null_value for ndx, null_value in nulls_row.items()
+            self._df.columns[ndx]: delegate.null_value()
+            for ndx, delegate in self.delegate.delegates.items()
         }
 
         nulls_df = pd.DataFrame(
