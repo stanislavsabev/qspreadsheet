@@ -115,19 +115,19 @@ class HeaderView(qt.QHeaderView):
         return qt.QSize(super_sz_h.width(), super_sz_h.height() + 10)
 
     def on_section_resized(self, i):
-        logger.debug("\nstart =======")
+        # logger.debug("\nstart =======")
         for ndx in range(i, len(self.header_widgets)):
             logical = self.logicalIndex(ndx)
             self._set_item_geometry(self.header_widgets[logical], logical)
-        logger.debug("\nend =======\n")
+        # logger.debug("\nend =======\n")
 
     def _set_item_geometry(self, item: HeaderWidget, logical: int):
         x = self.sectionViewportPosition(logical) + item.margins.left()
         y = item.margins.top()
         w = self.sectionSize(logical) - item.margins.left() - item.margins.right() - 1
         h = self.height() + item.margins.top() + item.margins.bottom() - 1
-        logger.debug("logical: %s", logical)
-        logger.debug("\nx=%s  y=%s\nw=%s  h=%s", x, y, w, h)
+        # logger.debug("logical: %s", logical)
+        # logger.debug("\nx=%s  y=%s\nw=%s  h=%s", x, y, w, h)
         item.setGeometry(x, y, w, h)
 
     def on_section_moved(self, logical, oldVisualIndex, newVisualIndex):

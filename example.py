@@ -69,7 +69,7 @@ def load_df():
     states = ["California", "Texas", "New York", "Florida", "Illinois"]
     data = {"states": states, "area": area, "pop": pop}
     df = pd.DataFrame(data=data)
-    df["overcrowded"] = df["pop"] / df["area"] > 100
+    df["Over 100 people / km2"] = df["pop"] / df["area"] > 100
     return df
 
 
@@ -88,6 +88,7 @@ class BoolToYesNoDelegate(delegates.BoolDelegate):
         editor.setCurrentIndex(self.choices.index(value))
 
     def display_data(self, index, value):
+        del index  # not used
         if pd.isnull(value):
             return ""
         return "Yes" if value else "No"
@@ -107,11 +108,15 @@ def main():
     app = qt.QApplication(sys.argv)
     df = load_df()
     table_view = df_view.DataFrameView(df=df)
-    table_view.set_column_delegate_for("overcrowded", BoolToYesNoDelegate())
-    table_view.set_column_delegate_for("states", delegates.StringDelegate())
+    table_view.set_column_delegate_for("Over 100 people / km2", BoolToYesNoDelegate().to_nullable())
+    # table_view.set_column_delegate_for("states", delegates.StringDelegate())
+    table_view.set_column_delegate_for("states", delegates.StringDelegate().to_nullable())
     table_view.set_columns_edit_state(["pop", "area"], False)
-    # table_view.horizontalHeader().setVisible(False)
-    # table_view.verticalHeader().setVisible(False)
+    # table_view.set_columns_edit_state(["area", "pop"], True)
+
+    # table_view.enable_mutable_rows(False)
+    table_view.enable_mutable_rows(True)
+
     window = MainWindow(table_view=table_view)
     window.show()
     sys.exit(app.exec_())
