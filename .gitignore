@@ -86,11 +86,11 @@ celerybeat-schedule
 *.sage.py
 
 # Environments
+env/
 .env/
+venv/
 .venv/
 .venv*
-venv/
-env/
 ENV/
 env.bak/
 venv.bak/
