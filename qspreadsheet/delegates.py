@@ -385,9 +385,6 @@ class BoolDelegate(ColumnDelegate):
         del index  # not used
         return self.choices.index(self._default)
 
-    def to_nullable(self) -> "NullableDelegate":
-        return self
-
     def null_value(self) -> Any:
         return pd.NA
 
