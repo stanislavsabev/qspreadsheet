@@ -108,7 +108,7 @@ def main():
     app = qt.QApplication(sys.argv)
     df = load_df()
     table_view = df_view.DataFrameView(df=df)
-    table_view.set_column_delegate_for("Over 100 people / km2", BoolToYesNoDelegate().to_nullable())
+    table_view.set_column_delegate_for("Over 100 people / km2", BoolToYesNoDelegate())
     # table_view.set_column_delegate_for("states", delegates.StringDelegate())
     table_view.set_column_delegate_for("states", delegates.StringDelegate().to_nullable())
     table_view.set_columns_edit_state(["pop", "area"], False)
