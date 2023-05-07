@@ -12,7 +12,7 @@ from PySide2.QtCore import (QAbstractItemModel, QAbstractTableModel, QDate,
                             QDateTime, QMargins, QModelIndex, QObject, QPoint,
                             QRegExp, QRunnable, QSettings, QSignalMapper,
                             QSize, QSortFilterProxyModel, Qt, QThreadPool,
-                            Signal)
+                            Signal, QEvent)
 from PySide2.QtGui import (QBrush, QCloseEvent, QColor, QContextMenuEvent,
                            QFont, QFontMetrics, QIcon, QKeySequence, QPixmap,
                            QResizeEvent, QShowEvent, QTextCharFormat,
