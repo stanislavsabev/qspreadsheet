@@ -55,7 +55,7 @@ class DataFrameView(qt.QTableView):
 
         self._main_delegate = MasterDelegate(self)
         column_delegates = delegates or automap_delegates(df, nullable=True)
-        self._set_column_delegates_for_df(column_delegates, df)
+        self._set_df_delegates(column_delegates, df)
 
         self._model = DataFrameModel(
             df=df,
@@ -107,7 +107,7 @@ class DataFrameView(qt.QTableView):
         menu_pos = qt.QPoint(pos.x() + 20, pos.y() + menu.height() + 20)
         menu.exec_(menu_pos)
 
-    def set_columns_edit_state(
+    def set_edit_state(
         self, columns: Union[Any, Iterable[Any]], edit_state: bool
     ) -> None:
         """Enables/disables column's edit state.
@@ -133,7 +133,7 @@ class DataFrameView(qt.QTableView):
         column_indices = self._model._df.columns.get_indexer(columns)
         self._model.col_ndx.set_disabled_mask(column_indices, (not edit_state))
 
-    def set_column_delegate_for(self, column: Any, delegate: ColumnDelegate):
+    def set_delegate_for(self, column: Any, delegate: ColumnDelegate):
         """Sets the column delegate for single column
 
         Paramenters
@@ -145,7 +145,7 @@ class DataFrameView(qt.QTableView):
         icolumn = self._df.columns.get_loc(column)
         self._main_delegate.add_column_delegate(icolumn, delegate)
 
-    def _set_column_delegates_for_df(
+    def _set_df_delegates(
         self, delegates: Mapping[Any, ColumnDelegate], df: DF
     ):
         """(Private) Used to avoid circular reference, when calling self._temp_df"""
@@ -162,14 +162,14 @@ class DataFrameView(qt.QTableView):
 
         del current
 
-    def set_column_delegates(self, delegates: Mapping[Any, ColumnDelegate]):
+    def set_delegates(self, delegates: Mapping[Any, ColumnDelegate]):
         """Sets the column delegates for multiple columns
 
         Paramenters
         -----------
         delegates : Mapping[column, ColumnDelegate]. Dict-like, with column name and delegates
         """
-        self._set_column_delegates_for_df(delegates, self._model._df)
+        self._set_df_delegates(delegates, self._model._df)
 
     def set_column_widths(self):
         header = self.horizontalHeader()
@@ -178,7 +178,7 @@ class DataFrameView(qt.QTableView):
                 i, self.header_view.header_widgets[i].sizeHint().width()
             )
 
-    def enable_mutable_rows(self, enable: bool):
+    def set_mutable_rows(self, enable: bool):
         if not isinstance(enable, bool):
             raise TypeError("Argument `muttable` not a boolean.")
         self._model.enable_mutable_rows(enable=enable)

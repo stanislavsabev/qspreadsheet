@@ -77,7 +77,7 @@ class BoolToYesNoDelegate(delegates.BoolDelegate):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.choices = ["Yes", "No"]
-        self._default = ""
+        self._default = "No"
 
     def setEditorData(self, editor: qt.QComboBox, index: qt.QModelIndex):
         model_value = index.model().data(index, qt.Qt.EditRole)
@@ -90,7 +90,7 @@ class BoolToYesNoDelegate(delegates.BoolDelegate):
     def display_data(self, index, value):
         del index  # not used
         if pd.isnull(value):
-            return ""
+            return ".na(yes|no)"
         return "Yes" if value else "No"
 
     def setModelData(
@@ -108,14 +108,14 @@ def main():
     app = qt.QApplication(sys.argv)
     df = load_df()
     table_view = df_view.DataFrameView(df=df)
-    table_view.set_column_delegate_for("Over 100 people / km2", BoolToYesNoDelegate())
-    # table_view.set_column_delegate_for("states", delegates.StringDelegate())
-    table_view.set_column_delegate_for("states", delegates.StringDelegate().to_nullable())
-    table_view.set_columns_edit_state(["pop", "area"], False)
-    # table_view.set_columns_edit_state(["area", "pop"], True)
+    table_view.set_delegate_for("Over 100 people / km2", BoolToYesNoDelegate().to_nullable())
+    # table_view.set_delegate_for("states", delegates.StringDelegate())
+    table_view.set_delegate_for("states", delegates.StringDelegate().to_nullable())
+    table_view.set_edit_state(["pop", "area", "Over 100 people / km2"], False)
+    # table_view.set_edit_state(["area", "pop"], True)
 
-    # table_view.enable_mutable_rows(False)
-    table_view.enable_mutable_rows(True)
+    # table_view.set_mutable_rows(False)
+    # table_view.set_mutable_rows(True)
 
     window = MainWindow(table_view=table_view)
     window.show()
