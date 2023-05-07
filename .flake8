@@ -1,0 +1,9 @@
+[flake8]
+ignore = F401
+max-line-length = 99
+exclude =
+    __pycache__,
+    .venv/,
+    tests/*,
+    qt.py
+max-complexity = 10
